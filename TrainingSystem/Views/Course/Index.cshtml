@@ -1,0 +1,114 @@
+﻿@model List<Course>
+@{
+    // Layout = "_CourseLayout";
+    ViewData["Title"] = "Index";
+}
+
+<div id="container">
+    <h2>All Courses</h2>
+    <a class="a" asp-action="Add" asp-controller="Course">Add New Course</a>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Degree</th>
+                <th>Min Degree</th>
+                <th>Department</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody">
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.Name</td>
+                    <td>@course.Degree</td>
+                    <td>@course.MinDegree</td>
+                    <td>@course.department.Name</td>
+                    <td><a class="a" asp-action="Details" asp-controller="Course" asp-route-id = "@course.Id" >Details</a></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+
+<style>
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    span {
+        text-align: center;
+    }
+
+    .a {
+        text-decoration: none;
+        display: inline-block;
+        outline: 0;
+        cursor: pointer;
+        padding: 5px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        vertical-align: middle;
+        border: 1px solid;
+        border-radius: 6px;
+        color: #ffffff;
+        background-color: #2ea44f;
+        /* background-color: rgb(26 188 156); */
+        border-color: #1b1f2326;
+        box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+        transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+        transition-property: color, background-color, border-color;
+        margin: 10px 0;
+    }
+
+        .a:hover {
+            color: white;
+            background-color: #2c974b;
+            /* background-color: rgb(26 188 156); */
+            border-color: #1b1f2326;
+            transition-duration: 0.1s;
+        }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width: 850px;
+        box-shadow: 0 0 20px rgba(39, 37, 37, 0.15);
+    }
+
+        .styled-table thead tr {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #000000;
+            }
+</style>
+
+

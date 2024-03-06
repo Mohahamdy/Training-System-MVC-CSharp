@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+<div id="container">
+    <h2>Instrcutor Details</h2>
+    <div class="card" style="width: 18rem;">
+        <img src="~/Images/@Model[0].ImgUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@Model[0].Name</h5>
+            <h5 class="card-title">Address: @Model[0].Address</h5>
+            <h5 class="card-title">Salary : $@Model[0].Salary</h5>
+            <h5 class="card-title">Department: @Model[0].Department</h5>
+            <h5 class="card-title">Course: @Model[0].Course</h5>
+        </div>
+    </div>
+
+    <a class="a" href="/Instructor/Index">Back to home</a>
+</div>
+
+<style>
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align:center;
+    }
+
+    h2{
+        margin-bottom: 20px;
+    }
+    .a {
+        text-decoration: none;
+        display: inline-block;
+        outline: 0;
+        cursor: pointer;
+        padding: 5px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        vertical-align: middle;
+        border: 1px solid;
+        border-radius: 6px;
+        color: #ffffff;
+        background-color: #2ea44f;
+        border-color: #1b1f2326;
+        box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+        transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+        transition-property: color, background-color, border-color;
+        margin: 10px 0;
+    }
+
+    .a:hover {
+        color: white;
+        background-color: #2c974b;
+        border-color: #1b1f2326;
+        transition-duration: 0.1s;
+    }
+
+</style>

@@ -1,0 +1,32 @@
+﻿@model StNameAndCrsNameAndDegreeAndClr
+
+@{
+    ViewData["Title"] = "ShowResult";
+}
+
+<div id="container">
+    <h2>Trainee Result</h2>
+
+    <div class="card p-2" style="width: 18rem;" >
+        <div class="card-body">
+            <h5 class="card-title">Name:   <span style="color: @Model.Clr">@Model.StName</span></h5>
+            <h5 class="card-title">Course: <span style="color: @Model.Clr">@Model.CrsName</span> </h5>
+            <h5 class="card-title">Degre:  <span style="color: @Model.Clr">@Model.Degree</span></h5>
+        </div>
+    </div>
+</div>
+
+<style>
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    h2{
+        margin:20px;
+    }
+</style>
+
+
+

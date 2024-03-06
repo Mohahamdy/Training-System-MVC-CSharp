@@ -1,0 +1,104 @@
+﻿@model List<StNameAndCrsNameAndDegreeAndClr>
+
+@{
+    ViewData["Title"] = "ShowTraineeResult";
+}
+
+@* <h1>ShowTraineeResult</h1> *@
+<div id="container">
+    <h2>#@Model[0].StName Courses</h2>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Degree</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody">
+            @foreach (var crsResult in Model)
+            {
+                <tr>
+                    <td style="background-color:@crsResult.Clr; color:white">@crsResult.CrsName</td>
+                    <td>@crsResult.Degree</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+
+<style>
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    span {
+        text-align: center;
+    }
+
+    .a {
+        text-decoration: none;
+        display: inline-block;
+        outline: 0;
+        cursor: pointer;
+        padding: 5px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        vertical-align: middle;
+        border: 1px solid;
+        border-radius: 6px;
+        color: #ffffff;
+        background-color: #2ea44f;
+        border-color: #1b1f2326;
+        box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+        transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+        transition-property: color, background-color, border-color;
+        margin: 10px 0;
+    }
+
+    .a:hover {
+        color: white;
+        background-color: #2c974b;
+        border-color: #1b1f2326;
+        transition-duration: 0.1s;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        width: 850px;
+        box-shadow: 0 0 20px rgba(39, 37, 37, 0.15);
+    }
+
+    .styled-table thead tr {
+        background-color: #000000;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+        text-align: center;
+    }
+
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #000000;
+    }
+</style>

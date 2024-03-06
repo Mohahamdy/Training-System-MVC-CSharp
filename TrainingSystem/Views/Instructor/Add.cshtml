@@ -1,0 +1,64 @@
+﻿@model InstructorWithDeptsAndCrsVM
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>Add New Instructor</h2>
+
+<form class="form-check" action="/Instructor/SaveAdd" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" class="form-control" name="Name" value="@Model?.Name" id="Name">
+    </div>
+    <div class="mb-3">
+        <label for="Salary" class="form-label">Salary</label>
+        <input type="number" class="form-control" name="Salary" value="" id="Salary">
+    </div>
+    <div class="mb-3">
+        <label for="ImgUrl" class="form-label">Img Url</label>
+        @* <input type="text" class="form-control" name="ImgUrl" value="@Model?.ImgUrl" id="ImgUrl"> *@
+        <input type="file" class="form-control" name="file" />
+    </div>
+    <div class="mb-3">
+        <label for="Address" class="form-label">Address</label>
+        <input type="text" class="form-control" name="Address" value="@Model?.Address" id="Address">
+    </div>
+    <div class="mb-3">
+        <label for="Dept_Id" class="form-label">Deptartment</label>
+        <select class="form-control" name="Dept_Id" id="Dept_Id">
+            <option selected hidden>Select Department</option>
+            @foreach (var dept in Model.Departments)
+            {
+                if(Model.Dept_Id == dept.Id)
+                {
+                    <option value="@dept.Id" selected>@dept.Name</option>
+                }
+                else
+                {
+                    <option value="@dept.Id">@dept.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="Crs_Id" class="form-label">Course</label>
+        <select class="form-control" name="Crs_Id" id="Crs_Id">
+            <option selected hidden>Select Course</option>
+            @foreach (var crs in Model.Courses)
+            {
+                if(crs.Id == Model.Crs_Id)
+                {
+                    <option value="@crs.Id" selected>@crs.Name</option>
+                }
+                else
+                {
+                    <option value="@crs.Id">@crs.Name</option>
+
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" style="color: rgb(26 188 156)">Add</button>
+    <a class="btn btn-primary" href="/Instructor/Index">Back To Home</a>
+</form>
+
