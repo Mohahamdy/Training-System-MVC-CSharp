@@ -3,33 +3,35 @@
     ViewData["Title"] = "Add";
 }
 
-<h2>Add New Instructor</h2>
+<h2>Add Instructor</h2>
 
 <form class="form-check" action="/Instructor/SaveAdd" method="post" enctype="multipart/form-data">
     <div class="mb-3">
-        <label for="Name" class="form-label">Name</label>
-        <input type="text" class="form-control" name="Name" value="@Model?.Name" id="Name">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label for="Salary" class="form-label">Salary</label>
-        <input type="number" class="form-control" name="Salary" value="" id="Salary">
+        <label asp-for="Salary"></label>
+        <input asp-for="Salary" class="form form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="ImgUrl" class="form-label">Img Url</label>
-        @* <input type="text" class="form-control" name="ImgUrl" value="@Model?.ImgUrl" id="ImgUrl"> *@
-        <input type="file" class="form-control" name="file" />
+        <input type="file" class="form-control" name="file" id="file"/>
     </div>
     <div class="mb-3">
-        <label for="Address" class="form-label">Address</label>
-        <input type="text" class="form-control" name="Address" value="@Model?.Address" id="Address">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="Dept_Id" class="form-label">Deptartment</label>
-        <select class="form-control" name="Dept_Id" id="Dept_Id">
+        <select class="form-control" name="Dept_Id" id="Dept_Id" onchange="GetCrs()">
             <option selected hidden>Select Department</option>
             @foreach (var dept in Model.Departments)
             {
-                if(Model.Dept_Id == dept.Id)
+                if (Model.Dept_Id == dept.Id)
                 {
                     <option value="@dept.Id" selected>@dept.Name</option>
                 }
@@ -39,26 +41,40 @@
                 }
             }
         </select>
+        <span asp-validation-for="Dept_Id" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label for="Crs_Id" class="form-label">Course</label>
         <select class="form-control" name="Crs_Id" id="Crs_Id">
             <option selected hidden>Select Course</option>
-            @foreach (var crs in Model.Courses)
-            {
-                if(crs.Id == Model.Crs_Id)
-                {
-                    <option value="@crs.Id" selected>@crs.Name</option>
-                }
-                else
-                {
-                    <option value="@crs.Id">@crs.Name</option>
-
-                }
-            }
         </select>
+        <span asp-validation-for="Crs_Id" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary" style="color: rgb(26 188 156)">Add</button>
+    <button type="submit" class="btn btn-primary">Add</button>
     <a class="btn btn-primary" href="/Instructor/Index">Back To Home</a>
 </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    function GetCrs(){
+        let deptid = $("#Dept_Id").val();
+        //console.log(deptid);
+        $.ajax({
+            url: `/Instructor/GetCrsForDept?deptId=${deptid}`, success: function (result) {
+                //console.log(result);
+                $("#Crs_Id").html("");
+                for (var crs of result) {
+                    //console.log(crs)
+                    $("#Crs_Id").append(`<option value="${crs.id}" selected > ${crs.name}</option>`)
+                }
+            }
+        });
+
+    }
+</script>
+
+
 

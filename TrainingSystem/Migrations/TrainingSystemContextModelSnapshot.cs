@@ -46,7 +46,7 @@ namespace TrainingSystem.Migrations
 
                     b.HasIndex("Dept_Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("TrainingSystem.Models.CrsResult", b =>
@@ -72,7 +72,7 @@ namespace TrainingSystem.Migrations
 
                     b.HasIndex("Trainee_Id");
 
-                    b.ToTable("CrsResults");
+                    b.ToTable("CrsResults", (string)null);
                 });
 
             modelBuilder.Entity("TrainingSystem.Models.Department", b =>
@@ -92,7 +92,7 @@ namespace TrainingSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("TrainingSystem.Models.Instructor", b =>
@@ -128,7 +128,7 @@ namespace TrainingSystem.Migrations
 
                     b.HasIndex("Dept_Id");
 
-                    b.ToTable("Instructors");
+                    b.ToTable("Instructors", (string)null);
                 });
 
             modelBuilder.Entity("TrainingSystem.Models.Trainee", b =>
@@ -159,7 +159,7 @@ namespace TrainingSystem.Migrations
 
                     b.HasIndex("Dept_Id");
 
-                    b.ToTable("Trainees");
+                    b.ToTable("Trainees", (string)null);
                 });
 
             modelBuilder.Entity("TrainingSystem.Models.Course", b =>

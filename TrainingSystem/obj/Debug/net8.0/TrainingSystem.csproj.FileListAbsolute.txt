@@ -259,3 +259,4 @@ D:\Technical Materials\ASP.Net Core(MVC)\Tasks\Day02\TrainingSystem\TrainingSyst
 D:\Technical Materials\ASP.Net Core(MVC)\Tasks\Day02\TrainingSystem\TrainingSystem\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 D:\Technical Materials\ASP.Net Core(MVC)\Tasks\Day02\TrainingSystem\TrainingSystem\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\Technical Materials\ASP.Net Core(MVC)\Tasks\Day02\TrainingSystem\TrainingSystem\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+D:\Technical Materials\ASP.Net Core(MVC)\Tasks\Day02\TrainingSystem\TrainingSystem\obj\Debug\net8.0\TrainingSystem.sourcelink.json

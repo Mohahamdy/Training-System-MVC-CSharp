@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using TrainingSystem.Models;
+using TrainingSystem.Repository;
+
 namespace TrainingSystem
 {
     public class Program
@@ -5,6 +9,16 @@ namespace TrainingSystem
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //add service of dbcontext to register 
+            builder.Services.AddDbContext<TrainingSystemContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ts"));
+            });
+
+            //add server to register the Irepos
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

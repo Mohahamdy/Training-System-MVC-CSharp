@@ -4,8 +4,9 @@ namespace TrainingSystem.Models
 {
     public class TrainingSystemContext : DbContext
     {
-        public TrainingSystemContext() : base(){}
+        public TrainingSystemContext() : base() { }
 
+        public TrainingSystemContext(DbContextOptions<TrainingSystemContext> options):base(options){}
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
@@ -18,5 +19,8 @@ namespace TrainingSystem.Models
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
     }
 }

@@ -12,7 +12,11 @@ namespace TrainingSystem.Controllers
             var instructorsModel = context.Instructors.Select(i=> new {i.Id,i.Name,i.ImgUrl,i.Salary,i.Address,Department = i.department.Name,Course = i.course.Name }).ToList();
             return View("ShowAll", instructorsModel);
         }
-
+        public IActionResult GetCrsForDept(int deptId)
+        {
+            List<Course> crs = context.Courses.Where(c=> c.Dept_Id == deptId).ToList();
+            return Json(crs);
+        }
         public IActionResult Detail(int id)
         {
             var instructorModel = context.Instructors.Where(i=> i.Id == id).Select(i => new { i.Id, i.Name, i.ImgUrl, i.Salary, i.Address, Department = i.department.Name, Course = i.course.Name }).ToList();
@@ -31,9 +35,8 @@ namespace TrainingSystem.Controllers
         [HttpPost]
         public IActionResult SaveAdd(InstructorWithDeptsAndCrsVM insVM,IFormFile file)
         {
-            if(file != null && file.Length > 0 && file.ContentType.Split("/")[0] == "image")
+            if (file != null && file.Length > 0)
             {
-                
                 string fileName = Path.GetFileName(file.FileName);
                 string imgPath = $"wwwroot/Images/{fileName}";
                 FileStream fs = new FileStream(imgPath, FileMode.Create);
@@ -42,7 +45,7 @@ namespace TrainingSystem.Controllers
                 insVM.ImgUrl = fileName;
             }
 
-            if(insVM.Name != null && insVM.Salary > 2000)
+            if (ModelState.IsValid == true)
             {
                 Instructor instructor = new Instructor()
                 {

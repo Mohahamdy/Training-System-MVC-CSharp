@@ -1,6 +1,6 @@
 ﻿@model List<Course>
 @{
-    // Layout = "_CourseLayout";
+    //Layout = "_CourseLayout";
     ViewData["Title"] = "Index";
 }
 
@@ -15,6 +15,8 @@
                 <th>Min Degree</th>
                 <th>Department</th>
                 <th>Details</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
 
@@ -26,14 +28,17 @@
                     <td>@course.Degree</td>
                     <td>@course.MinDegree</td>
                     <td>@course.department.Name</td>
-                    <td><a class="a" asp-action="Details" asp-controller="Course" asp-route-id = "@course.Id" >Details</a></td>
+                    <td><a href="#" class="a" onclick="ShowCourse(@course.Id,'@course.Name',@course.Degree,@course.MinDegree,'@course.department.Name')">Details</a></td>
+                    @* <td><a class="a" asp-action="Details" asp-controller="Course" asp-route-id = "@course.Id" >Details</a></td> *@
+
+                    <td><a class="a" asp-action="Edit" asp-controller="Course" asp-route-id="@course.Id">Edit</a></td>
+                    <td><a href="#"  class="a" onclick="deleteCourse(@course.Id,'@course.Name',@course.Degree,@course.MinDegree,'@course.department.Name')" style="background-color:red;text-align:center">Delete</a></td>
                 </tr>
             }
         </tbody>
 
     </table>
 </div>
-
 
 <style>
     #container {
@@ -111,4 +116,59 @@
             }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    async function deleteCourse(crsId, name, degree, mindegree, deptName) {
+        event.preventDefault();
+        Swal.fire({
+            title: "Do you want to delete this Course?",
+            icon: "info",
+            html: `
+                          <div class="card" style="-webkit-border-radius:5px;text-align:center;box-shadow:5px 5px #888888" >
+                        <div class="card-body">
+                        <h5 class="card-title">Name: ${name}</h5>
+                            <h5 class="card-title">Degree: ${degree}</h5>
+                            <h5 class="card-title">Min Degree: ${mindegree}</h5>
+                            <h5 class="card-title">Department: ${deptName}</h5>
+            </div>
+        </div>
+      `,
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Delete",
+            denyButtonText: `Cancel`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/Course/Delete/${crsId}`, success:async function (result) {
+                        await Swal.fire("Deleted!", "", "success");
+                        location.reload();
+                    }
+                });
+            }
+        });
+    }
 
+    function ShowCourse(crsId, name, degree, mindegree, deptName) {
+        event.preventDefault();
+        Swal.fire({
+            title: "Course Info",
+            icon: "info",
+            html: `
+            <div class="card" style="-webkit-border-radius:5px;text-align:center;box-shadow:5px 5px #888888" >
+                <div class="card-body">
+                    <h5 class="card-title">Name: ${name}</h5>
+                    <h5 class="card-title">Degree: ${degree}</h5>
+                    <h5 class="card-title">Min Degree: ${mindegree}</h5>
+                    <h5 class="card-title">Department: ${deptName}</h5>
+                </div>
+            </div>
+          `,
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: "Cancel",
+            denyButtonText: `Cancel`
+        });
+    }
+</script>

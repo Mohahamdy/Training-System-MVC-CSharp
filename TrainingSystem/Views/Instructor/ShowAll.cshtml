@@ -30,11 +30,15 @@
                 <td>@instructor.Department</td>
                 <td>@instructor.Course</td>
                 <td><a class="a" href="/Instructor/Detail/@instructor.Id">Details</a></td>
-                <td><a class="a" href="/Instructor/Edit/@instructor.Id">Edit</a></td>
+                <td><a class="a" href="/Instructor/Edit/@instructor.Id" onclick="editInsr(@instructor.Id)">Edit</a></td>
             </tr>
         }
     </tbody>
+
     
+    <div>
+            @Html.PartialAsync("_EditPartial")
+    </div>
 </table>
 </div>
 
@@ -112,3 +116,11 @@
     }
 </style>
 
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function editInsr(id) {
+        event.preventDefault();
+        //console.log(id);
+
+    }
+</script>

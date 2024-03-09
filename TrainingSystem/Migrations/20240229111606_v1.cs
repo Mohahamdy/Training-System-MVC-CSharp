@@ -43,7 +43,7 @@ namespace TrainingSystem.Migrations
                         column: x => x.Dept_Id,
                         principalTable: "Departments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,7 +90,7 @@ namespace TrainingSystem.Migrations
                         column: x => x.Crs_Id,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Instructors_Departments_Dept_Id",
                         column: x => x.Dept_Id,
@@ -117,7 +117,7 @@ namespace TrainingSystem.Migrations
                         column: x => x.Crs_Id,
                         principalTable: "Courses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_CrsResults_Trainees_Trainee_Id",
                         column: x => x.Trainee_Id,

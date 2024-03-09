@@ -13,7 +13,7 @@ namespace TrainingSystem.Models
 
             Course courseFromDB = context.Courses.Include(c=>c.department).FirstOrDefault(c => c.Name == Name && c.Dept_Id == courseFromRequest.Dept_Id);
 
-            if (courseFromDB == null)
+            if (courseFromDB == null || courseFromRequest.Id == courseFromDB.Id)
                 return ValidationResult.Success;
            
             return new ValidationResult($"Name Already Exists in {courseFromDB.department.Name}");
